@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+        rel="stylesheet">
+    <title>Functional Programming Strategies</title>
+    <style>
+     :root {
+       /* Tailwind colors */
+       --color-gray-50: oklch(0.985 0.002 247.839);
+       --color-gray-100: oklch(0.967 0.003 264.542);
+       --color-gray-200: oklch(0.928 0.006 264.531);
+       --color-gray-300: oklch(0.872 0.01 258.338);
+       --color-gray-400: oklch(0.707 0.022 261.325);
+       --color-gray-500: oklch(0.551 0.027 264.364);
+       --color-gray-600: oklch(0.446 0.03 256.802);
+       --color-gray-700: oklch(0.373 0.034 259.733);
+       --color-gray-800: oklch(0.278 0.033 256.848);
+       --color-gray-900: oklch(0.21 0.034 264.665);
+       --color-gray-950: oklch(0.13 0.028 261.692);
+       --color-emerald-50: oklch(0.979 0.021 166.113);
+       --color-emerald-100: oklch(0.95 0.052 163.051);
+       --color-emerald-200: oklch(0.905 0.093 164.15);
+       --color-emerald-300: oklch(0.845 0.143 164.978);
+       --color-emerald-400: oklch(0.765 0.177 163.223);
+       --color-emerald-500: oklch(0.696 0.17 162.48);
+       --color-emerald-600: oklch(0.596 0.145 163.225);
+       --color-emerald-700: oklch(0.508 0.118 165.612);
+       --color-emerald-800: oklch(0.432 0.095 166.913);
+       --color-emerald-900: oklch(0.378 0.077 168.94);
+       --color-emerald-950: oklch(0.262 0.051 172.552);
+       
+       
+       --accent-color: var(--color-emerald-600);
+       --accent-color-dark: var(--color-emerald-800);
+       --default-text: var(--color-gray-800)
+     }
+     
+     * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+     }
+     
+     body {
+       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+       font-size: 18px;
+       line-height: 1.6;
+       color: var(--default-text);
+       background: white;
+     }
+     
+     h1,
+     h2,
+     h3,
+     h4,
+     h5 {
+       font-family: 'EB Garamond';
+       color: var(--accent-color);
+     }
+     
+     h1 {
+       font-size: 4rem;
+       margin-bottom: 20px;
+       font-weight: 700;
+       line-height: 1.2;
+     }
+     
+     h2 {
+       font-size: 2rem;
+       margin-bottom: 20px;
+     }
+     
+     h3 {
+       font-size: 1.3rem;
+       margin-bottom: 10px;
+     }
+     
+     p {
+       color: var(--default-text);
+       margin-bottom: 15px;
+     }
+     
+     a {
+       color: var(--accent-color);
+       text-decoration: underline dotted;
+       
+       &:hover {
+         text-decoration: underline;
+       }
+     }
+     
+     .top-bar {
+       background: linear-gradient(90deg, var(--accent-color) 0%, hsl(from var(--accent-color) h s calc(l * 1.4)) 100%);
+       height: 7px;
+     }
+     
+     .hero {
+       background: var(--color-emerald-50);
+       padding: 80px 20px;
+       
+       .byline {
+         font-family: 'EB Garamond';
+         font-size: 2rem;
+         font-weight: 500;
+         margin-bottom: 16px;
+       }
+     }
+     
+     .container {
+       max-width: 800px;
+       margin: 0 auto;
+     }
+     
+     
+     .accent {
+       color: var(--accent-color);
+     }
+     
+     .section {
+       padding: 60px 20px;
+     }
+     
+     .about {
+       /* background: var(--color-emerald-50); */
+       background: white;
+     }
+     
+     .features {
+       background: var(--color-gray-50);
+     }
+     
+     .feature-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+       gap: 30px;
+     }
+     
+     .feature-item {
+       padding: 30px;
+       background: white;
+       border-radius: 10px;
+       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     }
+     
+     
+     .email-signup {
+       background: white;
+       
+       .success-message {
+         display: none;
+         padding: 15px;
+         background: #d1fae5;
+         color: #065f46;
+         border-radius: 8px;
+         margin-top: 15px;
+       }
+     }
+     
+     .signup-form {
+       max-width: 500px;
+       margin: 0 auto;
+       display: flex;
+       gap: 10px;
+       flex-wrap: wrap;
+       justify-content: center;
+       margin-top: 30px;
+     }
+     
+     input[type="email"] {
+       flex: 1;
+       min-width: 250px;
+       padding: 15px 20px;
+       font-size: 1rem;
+       border: 2px solid #e5e7eb;
+       border-radius: 8px;
+       transition: border-color 0.3s;
+     }
+     
+     input[type="email"]:focus {
+       outline: none;
+       border-color: var(--accent-color);
+     }
+     
+     button {
+       padding: 15px 40px;
+       font-size: 1rem;
+       font-weight: 600;
+       background: var(--accent-color);
+       color: white;
+       border: none;
+       border-radius: 8px;
+       cursor: pointer;
+       transition: background 0.3s;
+     }
+     
+     button:hover {
+       background: var(--accent-color-dark);
+     }
+     
+     
+     footer {
+       background: var(--color-emerald-50);
+       font-size: 0.8em;
+       text-align: center;
+       padding: 30px 20px;
+       
+       p {
+         margin-bottom: 0px;
+         color: var(--color-emerald-700);
+       }
+       
+       .sparkle:hover {
+         filter: brightness(1.2);
+         text-shadow: 0px 0px 7px hotpink;
+       }
+     }
+     
+     @media (max-width: 768px) {
+       h1 {
+         font-size: 2rem;
+       }
+
+       .hero .byline {
+         font-size: 1.5rem;
+       }
+
+       h2 {
+         font-size: 1.5rem;
+       }
+
+       h3 {
+         font-size: 1.2rem;
+       }
+
+       p {
+         font-size: 1rem;
+       }
+       
+       .signup-form {
+         flex-direction: column;
+       }
+       
+       input[type="email"] {
+         min-width: 100%;
+       }
+     }
+    </style>
+</head>
+
+<body>
+  <div class="top-bar"></div>
+  <section class="hero">
+    <div class="container">
+      <h1><span class="accent">Functional Programming</span> Strategies</h1>
+      <p class="byline">A book, by <span class="accent"><a href="https://noelwelsh.com/">Noel Welsh</a></span></p>
+    </div>
+  </section>
+  
+  <section class="section about">
+    <div class="container">
+      <h2>About the Book</h2>
+      <p><em>Functional Programming Strategies</em> is the book for people
+        who want to master functional programming. I've been using
+        functional programming techniques for about 25 years, and I've
+        realized that what is important is how I think about code. This
+        book teaches the concepts and processes I use to create
+        code&mdash;what I call programming strategies. For example,
+        “following the types” is the strategy of using type information
+        the guide the implementation. Multiple case studies show how the
+        strategies apply to real world code.</p>
+      
+      <p>The book's examples use <a
+        href="https://www.scala-lang.org/">Scala</a>. Scala has significant
+        commercial adoption, and its expressivity allows me to easily
+        demonstrate all the strategies. However, the concepts in the book are
+        not limited to Scala and translate to other modern typed languages, such
+        as <a href="https://rust-lang.org/">Rust</a>,  <a
+        href="https://kotlinlang.org/">Kotlin</a>, <a
+        href="https://ocaml.org/">OCaml</a>, or <a
+        href="https://www.typescriptlang.org/">Typescript</a>.</p>
+    </div>
+  </section>
+  
+  <section class="section features">
+    <div class="container">
+      <h2>What You'll Learn</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>Data and Codata</h3>
+          <p>Learn to represent concepts in code as data or codata,
+            how to choose between the two based on extensibility
+            requirements, and how to translate from one to the
+            other.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Practical Examples</h3>
+          <p>Real-world code examples covering core programming
+            concerns such as error handling and complete systems
+            such as a stream-processing engine.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Type Classes</h3>
+          <p>Learn how type classes provide a novel form of extensibility.
+            Understand core type classes such as moniods, applicative functors, and monads, and how to use
+            them as code level abstractions and as conceptual tools for program design.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Dualities</h3>
+          <p>See how dualities&mdash;bidirectional program transformations&mdash;can be used as an organizing
+            principle and as a tool for program design.
+            Explore the dualities between data and codata, direct-style and continuation-passing style, and
+            more in practical case studies.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>Interpreters</h3>
+          <p>Learn how interpreters can be used to handle effects in a functional style,
+            and see the major implementation strategies and approaches to optimization.
+            Solve the &ldquo;expression problem&rdquo; with extremely flexible tagless final style
+            interpreters.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>A Whole Lot More</h3>
+          <p>This just scratches the surface of what's in the book.
+            At over 500 pages it's a comprehensive reference for all the major concepts and techniques used
+            by experts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section email-signup">
+    <div class="container">
+      <h2>Stay Updated</h2>
+      <p>The book will be launched in 2026. Get notified when it launches and receive exclusive updates.</p>
+      <form class="signup-form" id="signupForm">
+        <input type="email" id="emailInput" placeholder="Enter your email address" required>
+        <button type="submit">Notify Me</button>
+      </form>
+      <div class="success-message" id="successMessage">
+        Thank you for subscribing! We'll keep you updated.
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; Copyright 2026 Noel Welsh. Built with <span class="sparkle">💖</span>. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script>
+   document.getElementById('signupForm').addEventListener('submit', function (e) {
+     e.preventDefault();
+     
+     const email = document.getElementById('emailInput').value;
+     const successMessage = document.getElementById('successMessage');
+     
+     // Here you would normally send the email to your backend
+     console.log('Email submitted:', email);
+     
+     // Show success message
+     successMessage.style.display = 'block';
+     document.getElementById('emailInput').value = '';
+     
+     // Hide message after 5 seconds
+     setTimeout(() => {
+       successMessage.style.display = 'none';
+     }, 5000);
+   });
+  </script>
+</body>
+</html>
