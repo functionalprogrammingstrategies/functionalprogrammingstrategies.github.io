@@ -94,6 +94,18 @@
          text-decoration: underline;
        }
      }
+
+     .small {
+       font-size: 0.8rem;
+     }
+
+     .text-muted {
+       color: var(--color-gray-300);
+     }
+
+     .center {
+       text-align: center;
+     }
      
      .top-bar {
        background: linear-gradient(90deg, var(--accent-color) 0%, hsl(from var(--accent-color) h s calc(l * 1.4)) 100%);
@@ -152,57 +164,48 @@
      .email-signup {
        background: white;
        
-       .success-message {
-         display: none;
-         padding: 15px;
-         background: #d1fae5;
-         color: #065f46;
+       .signup-form {
+         max-width: 640px;
+         margin: 0 auto;
+         display: flex;
+         gap: 10px;
+         flex-wrap: wrap;
+         justify-content: center;
+         margin-top: 30px;
+         margin-bottom: 10px;
+       }
+       
+       input[type="email"] {
+         flex: 1;
+         min-width: 250px;
+         padding: 15px 20px;
+         font-size: 1rem;
+         border: 2px solid var(--color-gray-300);
          border-radius: 8px;
-         margin-top: 15px;
+         transition: border-color 0.3s;
+       }
+       
+       input[type="email"]:focus {
+         outline: none;
+         border-color: var(--accent-color);
+       }
+       
+       button {
+         padding: 15px 40px;
+         font-size: 1rem;
+         font-weight: 600;
+         background: var(--accent-color);
+         color: white;
+         border: none;
+         border-radius: 8px;
+         cursor: pointer;
+         transition: background 0.3s;
+       }
+       
+       button:hover {
+         background: var(--accent-color-dark);
        }
      }
-     
-     .signup-form {
-       max-width: 500px;
-       margin: 0 auto;
-       display: flex;
-       gap: 10px;
-       flex-wrap: wrap;
-       justify-content: center;
-       margin-top: 30px;
-     }
-     
-     input[type="email"] {
-       flex: 1;
-       min-width: 250px;
-       padding: 15px 20px;
-       font-size: 1rem;
-       border: 2px solid #e5e7eb;
-       border-radius: 8px;
-       transition: border-color 0.3s;
-     }
-     
-     input[type="email"]:focus {
-       outline: none;
-       border-color: var(--accent-color);
-     }
-     
-     button {
-       padding: 15px 40px;
-       font-size: 1rem;
-       font-weight: 600;
-       background: var(--accent-color);
-       color: white;
-       border: none;
-       border-radius: 8px;
-       cursor: pointer;
-       transition: background 0.3s;
-     }
-     
-     button:hover {
-       background: var(--accent-color-dark);
-     }
-     
      
      footer {
        background: var(--color-emerald-50);
@@ -340,14 +343,23 @@
   <section class="section email-signup">
     <div class="container">
       <h2>Stay Updated</h2>
-      <p>The book will be launched in 2026. Get notified when it launches and receive exclusive updates.</p>
-      <form class="signup-form" id="signupForm">
-        <input type="email" id="emailInput" placeholder="Enter your email address" required>
+      <p>The book will be launched in 2026. Get notified when it launches and
+      receive exclusive updates. We'll never share your email address with
+      anyone else.</p>
+      <form
+        action="https://buttondown.email/api/emails/embed-subscribe/functionalprogrammingstrategies"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.email/functionalprogrammingstrategies', 'popupwindow')"
+        class="signup-form"
+      >
+        <input type="email" name="email" id="bd-email" placeholder="Enter your email address">
+        <input type="hidden" value="1" name="embed"></input>
         <button type="submit">Notify Me</button>
       </form>
-      <div class="success-message" id="successMessage">
-        Thank you for subscribing! We'll keep you updated.
-      </div>
+      <p class="center small text-muted">
+        <a href="https://buttondown.email" target="_blank">Powered by Buttondown.</a>
+      </p>
     </div>
   </section>
   
@@ -356,26 +368,5 @@
       <p>&copy; Copyright 2026 Noel Welsh. Built with <span class="sparkle">💖</span>. All rights reserved.</p>
     </div>
   </footer>
-  
-  <script>
-   document.getElementById('signupForm').addEventListener('submit', function (e) {
-     e.preventDefault();
-     
-     const email = document.getElementById('emailInput').value;
-     const successMessage = document.getElementById('successMessage');
-     
-     // Here you would normally send the email to your backend
-     console.log('Email submitted:', email);
-     
-     // Show success message
-     successMessage.style.display = 'block';
-     document.getElementById('emailInput').value = '';
-     
-     // Hide message after 5 seconds
-     setTimeout(() => {
-       successMessage.style.display = 'none';
-     }, 5000);
-   });
-  </script>
 </body>
 </html>
