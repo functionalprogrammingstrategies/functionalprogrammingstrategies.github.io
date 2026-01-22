@@ -37,7 +37,7 @@
        
        
        --accent-color: var(--color-emerald-600);
-       --accent-color-dark: var(--color-emerald-800);
+       --accent-color-focus: var(--color-emerald-500);
        --default-text: var(--color-gray-800);
 
        --scale-ratio: 1.25;
@@ -116,7 +116,42 @@
        text-decoration: underline dotted;
        
        &:hover {
+         color: var(--accent-color-focus);
          text-decoration: underline;
+       }
+     }
+
+     button {
+       padding: 15px 40px;
+       font-size: 1rem;
+       font-weight: 600;
+       background: var(--accent-color);
+       color: white;
+       border: none;
+       border-color: var(--accent-color);
+       border-radius: 8px;
+       cursor: pointer;
+
+       &:hover {
+         border-color: var(--accent-color-focus);
+         background: var(--accent-color-focus);
+       }
+
+       &.muted {
+         background: none;
+         color: var(--accent-color);
+         border: none;
+         border-color: var(--accent-color);
+
+         &:hover {
+           color: var(--accent-color-focus);
+           border-color: var(--accent-color-focus);
+         }
+       }
+
+       a {
+         color: white;
+         text-decoration: none;
        }
      }
 
@@ -234,22 +269,6 @@
          outline: none;
          border-color: var(--accent-color);
        }
-       
-       button {
-         padding: 15px 40px;
-         font-size: 1rem;
-         font-weight: 600;
-         background: var(--accent-color);
-         color: white;
-         border: none;
-         border-radius: 8px;
-         cursor: pointer;
-         transition: background 0.3s;
-       }
-       
-       button:hover {
-         background: var(--accent-color-dark);
-       }
      }
      
      footer {
@@ -298,12 +317,17 @@
     <div class="container">
       <h1><span class="accent">Functional Programming</span> Strategies</h1>
       <h2 class="subtitle">Mental models for better code</h2>
-      <h2 class="byline">By <span class="accent"><a href="https://noelwelsh.com/">Noel Welsh</a></span></h2>
+      <h2 class="byline">A book by <span class="accent"><a href="https://noelwelsh.com/">Noel Welsh</a></span></h2>
 
-      <p class="mt-4"><a
-                        href="functionalprogrammingstrategies/functional-programming-strategies-preview.pdf">Preview
-                        the current draft</a> or <a href="#email-signup">sign
-                        up</a> to hear when it's released.</p>
+      <p class="mt-4">
+        <a href="https://payhip.com/b/8j14U"><button>Buy the draft PDF</button></a>
+      </p>
+      <p class="mt-4">The book is currently a draft.
+        You can <a href="functionalprogrammingstrategies/functional-programming-strategies-preview.pdf">read a free sample</a>,
+        or <a href="#email-signup">join the mailing list</a> to hear when it's released.
+        If you have suggestions or spot a mistake, please
+        <a href="https://github.com/functionalprogrammingstrategies/functionalprogrammingstrategies/issues">open an issue</a>.
+      </p>
     </div>
   </section>
   
@@ -342,8 +366,9 @@
         href="https://www.typescriptlang.org/">Typescript</a>.</p>
 
       <p>If you are after a systematic way to create code, rather than relying
-      on trial and error, <a href="#email-signup">sign up to the mailing
-      list</a> to be notified when the book is released.</p>
+      on trial and error,
+        <a href="https://payhip.com/b/8j14U">buy the draft PDF</a>
+        or <a href="#email-signup">sign up to the mailing list</a> to be notified when the book is released.</p>
     </div>
   </section>
   
@@ -393,8 +418,8 @@
             by experts.
           </p>
           <p>
-            <a href="functionalprogrammingstrategies/functional-programming-strategies-preview.pdf">Preview the current draft</a>
-            to see the full table of contents and sample chapters.
+            <a href="functionalprogrammingstrategies/functional-programming-strategies-preview.pdf">Read the free preview</a>
+            for the full table of contents and sample chapters.
           </p>
         </div>
       </div>
