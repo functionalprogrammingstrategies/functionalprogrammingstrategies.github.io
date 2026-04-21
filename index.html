@@ -241,10 +241,51 @@
        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
      }
      
+     .reviews {
+       background: white;
+
+
+       .review {
+         padding-top: 30px;
+         padding-bottom: 30px;
+
+         blockquote {
+           border-left: 4px solid var(--accent-color);
+           padding-left: 1.25em;
+           color: var(--color-gray-600);
+           font-size: 1.25rem;
+         }
+
+         .byline {
+           font-size: var(--text-sm);
+           color: var(--color-gray-500);
+           margin-top: 0.75em;
+
+           &::before {
+             content: "\2015\00A0"; /* — followed by non-breaking space */
+           }
+         }
+       }
+     }
      
      .email-signup {
-       background: white;
-       
+       background: var(--color-emerald-50);
+
+       input[type="email"] {
+         flex: 1;
+         min-width: 250px;
+         padding: 15px 20px;
+         font-size: 1rem;
+         border: 2px solid var(--color-gray-300);
+         border-radius: 8px;
+         transition: border-color 0.3s;
+
+         &:focus {
+           outline: none;
+           border-color: var(--accent-color);
+         }
+       }
+
        .signup-form {
          max-width: 640px;
          margin: 0 auto;
@@ -255,25 +296,11 @@
          margin-top: 30px;
          margin-bottom: 10px;
        }
-       
-       input[type="email"] {
-         flex: 1;
-         min-width: 250px;
-         padding: 15px 20px;
-         font-size: 1rem;
-         border: 2px solid var(--color-gray-300);
-         border-radius: 8px;
-         transition: border-color 0.3s;
-       }
-       
-       input[type="email"]:focus {
-         outline: none;
-         border-color: var(--accent-color);
-       }
      }
      
      footer {
        background: var(--color-emerald-50);
+       border-top: 1px solid var(--color-emerald-200);
        font-size: 0.8em;
        text-align: center;
        padding: 30px 20px;
@@ -428,6 +455,20 @@
     </div>
   </section>
   
+  <section id="reviews" class="section reviews">
+    <div class="container">
+      <h2>What People Are Saying</h2>
+      <div class="review">
+        <blockquote>
+          I turned to the book to improve the design of a research project I was
+          developing in Scala, which I wanted to redesign for better results. I found the
+          book very clear in its explanations and exercises.
+        </blockquote>
+        <p class="byline">Professor Manuel Gómez Olmedo, Department of Computer Science and Artificial Intelligence, University of Granada</p>
+      </div>
+    </div>
+  </section>
+
   <section id="email-signup" class="section email-signup">
     <div class="container">
       <h2>Stay Updated</h2>
@@ -450,7 +491,7 @@
       </p>
     </div>
   </section>
-  
+
   <footer>
     <div class="container">
       <p>&copy; Copyright 2026 Noel Welsh. Built with <span class="sparkle">💖</span>. All rights reserved.</p>
